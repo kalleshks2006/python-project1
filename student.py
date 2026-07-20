@@ -1,0 +1,16 @@
+name=input("Enter student's name: ")
+usn=input("Enter student's USN: ")
+m1=float(input("Enter marks for subject 1: "))
+m2=float(input("Enter marks for subject 2: "))
+m3=float(input("Enter marks for subject 3: "))
+total_marks=m1+m2+m3
+percentage=(total_marks/300)*100
+print("Student's Name:", name)
+print("Student's USN:", usn)
+print("Total Marks:", total_marks)
+print("Percentage:", percentage)
+print("Grade:", end=" ")
+print("A" if percentage >= 90 else "B" if percentage >= 80 else "C" if percentage >= 70 else "D" if percentage >= 60 else "F")
+print("Result:", "Pass" if percentage >= 40 else "Fail")
+print("Remarks:", "Excellent" if percentage >= 90 else "Very Good" if percentage >= 80 else "Good" if percentage >= 70 else "Average" if percentage >= 60 else "Poor")
+print("Thank you for using the student grading system!")
