@@ -2,6 +2,7 @@ import math
 num1=float(input("enter first number:"))
 operator=input("enter operator(=,-,*,/):")
 num2=float(input("enter second number:"))
+num3=float(input("enter third number:"))
 
 if operator=="+":
     print("result:",num1+num2)
