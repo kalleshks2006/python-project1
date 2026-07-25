@@ -19,14 +19,14 @@ screen.setup(WIDTH, HEIGHT)
 screen.tracer(0)
 
 head = turtle.Turtle()
-head.shape("square")
-head.color("#63e6be")
+head.shape("circle")
+head.color("#d52b3c")
 head.penup()
 head.direction = "stop"
 
 food = turtle.Turtle()
 food.shape("circle")
-food.color("#ff6b6b")
+food.color("#cb6bff")
 food.penup()
 food.goto(0, 100)
 
