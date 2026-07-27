@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Platform Form</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f3f8ff; color: #1c2e43; font-family: Arial, sans-serif; }
+    main { width: min(100% - 32px, 680px); margin: 28px auto; }
+    h1 { color: #173f70; margin-bottom: 6px; }
+    .subtitle { color: #536b85; margin-top: 0; }
+    form, #result { background: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 16px #1d3d6018; }
+    label, legend { display: block; font-weight: bold; margin-top: 16px; }
+    input, select, button { font: inherit; width: 100%; padding: 12px; border-radius: 8px; }
+    input, select { border: 1px solid #b9c8d8; margin-top: 6px; background: white; }
+    fieldset { border: 0; padding: 0; margin: 0; }
+    .choices { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
+    .choices label, .checkbox { font-weight: normal; margin: 0; display: flex; align-items: center; gap: 7px; }
+    .choices input, .checkbox input { width: auto; margin: 0; }
+    button { border: 0; background: #1966b3; color: white; cursor: pointer; font-weight: bold; margin-top: 22px; }
+    button:hover { background: #104f91; }
+    #result { display: none; margin-top: 18px; line-height: 1.55; white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Learning Platform Form</h1>
+    <p class="subtitle">Fill in your details to get started.</p>
+    <form id="learning-form">
+      <label for="name">Full name</label>
+      <input id="name" required autocomplete="name" placeholder="Enter your full name">
+
+      <label for="age">Age</label>
+      <input id="age" type="number" required min="4" max="120" inputmode="numeric" placeholder="Enter your age">
+
+      <label for="email">Email address</label>
+      <input id="email" type="email" required autocomplete="email" placeholder="name@example.com">
+
+      <fieldset>
+        <legend>You are a</legend>
+        <div class="choices">
+          <label><input type="radio" name="role" value="Student" checked> Student</label>
+          <label><input type="radio" name="role" value="Teacher"> Teacher</label>
+        </div>
+      </fieldset>
+
+      <label for="course">Course interest</label>
+      <select id="course">
+        <option>Python Programming</option><option>Mathematics</option><option>Science</option>
+        <option>English</option><option>Computer Basics</option>
+      </select>
+
+      <label for="mode">Preferred learning method</label>
+      <select id="mode">
+        <option>Videos</option><option>Reading notes</option><option>Practice exercises</option><option>Live classes</option>
+      </select>
+
+      <label class="checkbox"><input id="help" type="checkbox" checked> I need help using the study platform</label>
+      <button type="submit">Submit form</button>
+    </form>
+    <section id="result" aria-live="polite"></section>
+  </main>
+  <script>
+    document.getElementById('learning-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const get = id => document.getElementById(id).value;
+      const role = document.querySelector('input[name="role"]:checked').value;
+      let message = `Welcome, ${get('name')}!\n\nProfile saved for: ${role}\nSelected course: ${get('course')}\nPreferred learning method: ${get('mode')}\n\n`;
+      if (role === 'Student') {
+        message += 'How to use the study platform:\n1. Open the dashboard and choose your course.\n2. Watch lessons or read the study notes.\n3. Complete practice exercises after each lesson.\n4. Check your progress and repeat difficult topics.\n5. Ask your teacher or support when you need help.\n\n';
+        message += document.getElementById('help').checked ? 'Tip: Start with the first lesson and complete one small activity today.' : 'You are ready to begin learning!';
+      } else {
+        message += 'You can create lessons, share notes, and review student progress.';
+      }
+      const result = document.getElementById('result');
+      result.textContent = message;
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
